@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 480" fill="none">
+  <rect width="480" height="480" rx="40" fill="#F8F8F8" />
+  <circle cx="240" cy="180" r="92" fill="#34322D" opacity="0.12" />
+  <path
+    d="M240 262c-73.901 0-134 60.099-134 134v24h268v-24c0-73.901-60.099-134-134-134Z"
+    fill="#34322D"
+    opacity="0.12"
+  />
+  <text
+    x="50%"
+    y="86%"
+    text-anchor="middle"
+    fill="#34322D"
+    font-family="DM Sans, Arial, sans-serif"
+    font-size="22"
+    letter-spacing="2"
+  >
+    REPLACE WITH YOUR PHOTO
+  </text>
+</svg>

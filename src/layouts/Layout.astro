@@ -1,0 +1,68 @@
+---
+import "../styles/global.css";
+import siteConfig from "../site.config";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = `${siteConfig.name} | Personal Website`,
+  description = siteConfig.summary,
+} = Astro.props;
+
+const navItems = [
+  { href: "#home", label: "首页" },
+  { href: "#resume", label: "简历" },
+  { href: "#projects", label: "项目" },
+  { href: "#writing", label: "专栏" },
+  { href: "#links", label: "链接" },
+];
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Libre+Baskerville:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>{title}</title>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="site-header">
+        <a class="brand" href="#home">{siteConfig.name}</a>
+        <nav class="site-nav" aria-label="Primary">
+          {navItems.map((item) => (
+            <a href={item.href}>{item.label}</a>
+          ))}
+        </nav>
+      </header>
+
+      <main>
+        <slot />
+      </main>
+
+      <footer class="site-footer">
+        <p>{siteConfig.name}</p>
+        <div class="footer-links">
+          {siteConfig.githubUrl ? (
+            <a href={siteConfig.githubUrl} target="_blank" rel="noreferrer">
+              GitHub
+            </a>
+          ) : null}
+          <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

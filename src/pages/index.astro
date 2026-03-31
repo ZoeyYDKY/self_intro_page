@@ -1,0 +1,167 @@
+---
+import Layout from "../layouts/Layout.astro";
+import ResumeContent from "../content/resume.md";
+import { getCollection } from "astro:content";
+import siteConfig from "../site.config";
+import { articles } from "../data/articles";
+
+const projectEntries = await getCollection("projects");
+const projects = await Promise.all(
+  projectEntries.map(async (project) => {
+    const rendered = await project.render();
+
+    return {
+      ...project.data,
+      Content: rendered.Content,
+    };
+  }),
+);
+
+projects.sort((left, right) => {
+  return new Date(right.date).getTime() - new Date(left.date).getTime();
+});
+---
+
+<Layout title={`${siteConfig.name} | 个人网站`} description={siteConfig.summary}>
+  <section class="section hero" id="home">
+    <div class="hero-media">
+      <img
+        class="avatar"
+        src={siteConfig.avatarUrl}
+        alt={`${siteConfig.name} avatar`}
+        loading="eager"
+      />
+    </div>
+
+    <div class="hero-copy">
+      <p class="eyebrow">Personal site · Manus-inspired layout</p>
+      <h1>{siteConfig.name}</h1>
+      <p>{siteConfig.tagline}</p>
+      <p>{siteConfig.summary}</p>
+
+      <div class="hero-actions">
+        {siteConfig.githubUrl ? (
+          <a class="button" href={siteConfig.githubUrl} target="_blank" rel="noreferrer">
+            查看 GitHub
+          </a>
+        ) : (
+          <a class="button" href={`mailto:${siteConfig.email}`}>
+            联系邮箱
+          </a>
+        )}
+        <a class="button secondary" href="#projects">浏览项目</a>
+      </div>
+
+      <div class="hero-meta">
+        <span class="tag">{siteConfig.location}</span>
+        <span class="tag">数据科学</span>
+        <span class="tag">LLM · Agent</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="resume">
+    <div class="section-header">
+      <p class="eyebrow">Resume</p>
+      <h2>个人简历</h2>
+    </div>
+
+    <div class="panel rich-text">
+      <ResumeContent />
+    </div>
+  </section>
+
+  <section class="section" id="projects">
+    <div class="section-header">
+      <p class="eyebrow">Projects</p>
+      <h2>项目经验</h2>
+      <p class="section-intro">
+        每个项目都用独立 Markdown 文件维护，既方便扩展，也方便以后增加更多案例或拆成详情页。
+      </p>
+    </div>
+
+    <div class="cards">
+      {projects.map((project) => (
+        <article class="project-card">
+          <div class="card-topline">
+            <span>{project.date}</span>
+            {project.link ? (
+              <a class="text-link" href={project.link} target="_blank" rel="noreferrer">
+                查看项目
+              </a>
+            ) : (
+              <span class="card-note">暂无公开链接</span>
+            )}
+          </div>
+          <h3>{project.title}</h3>
+          <div class="rich-text">
+            <project.Content />
+          </div>
+          <div class="tag-list">
+            {project.tags.map((tag) => (
+              <span class="tag">{tag}</span>
+            ))}
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="section" id="writing">
+    <div class="section-header">
+      <p class="eyebrow">Writing</p>
+      <h2>专栏文章</h2>
+      <p class="section-intro">
+        在 `src/data/articles.ts` 中维护专栏标题与外链；当前未添加文章时将显示占位说明。
+      </p>
+    </div>
+
+    {articles.length === 0 ? (
+      <p class="section-intro section-intro--flush">
+        暂无专栏文章。添加条目后，本区域会自动列出标题、平台与日期。
+      </p>
+    ) : (
+      <div class="cards">
+        {articles.map((article) => (
+          <article class="article-card">
+            <div class="card-topline">
+              <span>{article.platform ?? "专栏"}</span>
+              <span>{article.date ?? "持续更新"}</span>
+            </div>
+            <h3>
+              <a href={article.url} target="_blank" rel="noreferrer">
+                {article.title}
+              </a>
+            </h3>
+            <a class="text-link" href={article.url} target="_blank" rel="noreferrer">
+              打开文章
+            </a>
+          </article>
+        ))}
+      </div>
+    )}
+  </section>
+
+  <section class="section" id="links">
+    <div class="section-header">
+      <p class="eyebrow">Links</p>
+      <h2>公开链接</h2>
+      <p class="section-intro">
+        对外联系渠道；若你在 `src/site.config.ts` 中填写 GitHub 地址，会在此一并展示。
+      </p>
+    </div>
+
+    <div class="links-grid">
+      {siteConfig.githubUrl ? (
+        <a class="link-card" href={siteConfig.githubUrl} target="_blank" rel="noreferrer">
+          <strong>GitHub</strong>
+          <p>{siteConfig.githubUrl}</p>
+        </a>
+      ) : null}
+      <a class="link-card" href={`mailto:${siteConfig.email}`}>
+        <strong>Email</strong>
+        <p>{siteConfig.email}</p>
+      </a>
+    </div>
+  </section>
+</Layout>
