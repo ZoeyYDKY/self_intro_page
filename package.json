@@ -2,6 +2,7 @@
   "name": "nettry",
   "version": "0.0.1",
   "type": "module",
+  "homepage": "https://zoeyydky.github.io/self_intro_page/",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",

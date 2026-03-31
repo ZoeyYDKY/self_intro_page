@@ -1,6 +1,6 @@
 # 维护说明
 
-本文面向需要修改本站源码的维护者；一般访客只需阅读根目录 [README.md](README.md) 中的在线地址即可。
+本文面向需要修改本站源码的维护者。**一般访客不需要读本文**：只要打开 [README.md](README.md) 里的公网链接即可，无需在本地部署。
 
 ## 内容与配置
 
@@ -23,6 +23,8 @@
 
 若将来改为用户主页仓库 `username.github.io` 根目录部署，需相应调整 `base`（常为 `/` 或省略）。
 
-## 部署
+## 部署（面向维护者）
 
-推送至 `main` 后，GitHub Actions（`.github/workflows/deploy.yml`）会执行构建并部署。仓库 **Settings → Pages** 中 **Source** 请选择 **GitHub Actions**。
+访客只需在浏览器里打开 README 中的线上地址；**部署**指的是把构建结果发布到 GitHub Pages，由仓库维护者通过推送代码触发。
+
+推送至 `main` 后，GitHub Actions（`.github/workflows/deploy.yml`）会执行构建并部署。仓库 **Settings → Pages** 中 **Source** 请选择 **GitHub Actions**（首次启用时一次性设置）。
