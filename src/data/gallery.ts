@@ -11,10 +11,24 @@ export type GalleryItem = {
  * `gallery/你的文件名.jpg`（不要带盘符或 `public/` 前缀）。
  */
 export const gallery: GalleryItem[] = [
-  { alt: "生活剪影 1", caption: "待替换：放入 public/gallery/ 并填写 src" },
-  { alt: "生活剪影 2", caption: "待替换" },
-  { alt: "生活剪影 3", caption: "待替换" },
-  { alt: "生活剪影 4", caption: "待替换" },
-  { alt: "生活剪影 5", caption: "待替换" },
-  { alt: "生活剪影 6", caption: "待替换" },
+  {
+    src: "DSCF4833.jpg",
+    alt: "城市街头的人像照片",
+    caption: "城市街头",
+  },
+  {
+    src: "DSC_3351.jpg",
+    alt: "阳光街区中的人像照片",
+    caption: "阳光街区",
+  },
+  {
+    src: "DSCF4550.JPG",
+    alt: "寺院建筑前的人像照片",
+    caption: "旅途一角",
+  },
+  {
+    src: "DSCF4738.jpg",
+    alt: "窗边绿意中的人像照片",
+    caption: "窗边绿意",
+  },
 ];

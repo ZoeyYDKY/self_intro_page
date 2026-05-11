@@ -2,7 +2,7 @@ const siteConfig = {
   name: "张可沁",
   tagline: "数据科学硕士 · 算法与 Agent 工程",
   summary:
-    "香港中文大学（深圳）数据科学硕士，本科毕业于中南财经政法大学应用统计。研究兴趣与实习经历覆盖企业级 Agent、LLM 地理相关性、语音合成与多代理自动化等方向。",
+    "香港中文大学（深圳）数据科学硕士，本科毕业于中南财经政法大学应用统计。实习与项目经历覆盖新能源充电场景 Agent、LLM 地理相关性判定、代码 Agent 评估与多模态语音合成。",
   location: "广东深圳",
   githubUrl: "https://github.com/ZoeyYDKY",
   email: "keqinzhang@link.cuhk.edu.cn",
