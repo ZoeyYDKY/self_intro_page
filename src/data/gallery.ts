@@ -2,8 +2,6 @@ export type GalleryItem = {
   /** 相对 `public/` 的路径，例如 `gallery/01.jpg`；留空则显示占位格 */
   src?: string;
   alt: string;
-  /** 图片下方短说明，可选 */
-  caption?: string;
 };
 
 /**
@@ -14,21 +12,17 @@ export const gallery: GalleryItem[] = [
   {
     src: "DSCF4833.jpg",
     alt: "城市街头的人像照片",
-    caption: "城市街头",
   },
   {
     src: "DSC_3351.jpg",
     alt: "阳光街区中的人像照片",
-    caption: "阳光街区",
   },
   {
     src: "DSCF4550.JPG",
     alt: "寺院建筑前的人像照片",
-    caption: "旅途一角",
   },
   {
     src: "DSCF4738.jpg",
     alt: "窗边绿意中的人像照片",
-    caption: "窗边绿意",
   },
 ];

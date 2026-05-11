@@ -206,21 +206,29 @@ const sectionTabs = [
         {gallery.map((item) => (
           <figure class="gallery-item">
             {item.src ? (
-              <img
-                class="gallery-img"
-                src={asset(item.src)}
-                alt={item.alt}
-                loading="lazy"
-              />
+              <button class="gallery-button" type="button" data-lightbox-src={asset(item.src)} data-lightbox-alt={item.alt}>
+                <img
+                  class="gallery-img"
+                  src={asset(item.src)}
+                  alt={item.alt}
+                  loading="lazy"
+                />
+              </button>
             ) : (
               <div class="gallery-placeholder" role="img" aria-label={item.alt}>
                 <span class="gallery-placeholder-dot" aria-hidden="true" />
                 <span class="gallery-placeholder-text">待上传照片</span>
               </div>
             )}
-            {item.caption ? <figcaption class="gallery-caption">{item.caption}</figcaption> : null}
           </figure>
         ))}
+      </div>
+
+      <div class="gallery-lightbox" data-gallery-lightbox hidden>
+        <button class="gallery-lightbox__close" type="button" data-lightbox-close aria-label="关闭大图">
+          ×
+        </button>
+        <img class="gallery-lightbox__img" data-gallery-lightbox-img alt="" />
       </div>
     </section>
 
@@ -506,6 +514,39 @@ const sectionTabs = [
 
       updateFromScroll();
       updateTabsVisualByScroll();
+    })();
+  </script>
+
+  <script is:inline>
+    (() => {
+      const lightbox = document.querySelector("[data-gallery-lightbox]");
+      const lightboxImg = document.querySelector("[data-gallery-lightbox-img]");
+      const closeButton = document.querySelector("[data-lightbox-close]");
+      const triggers = Array.from(document.querySelectorAll("[data-lightbox-src]"));
+      if (!lightbox || !lightboxImg || triggers.length === 0) return;
+
+      const close = () => {
+        lightbox.hidden = true;
+        lightboxImg.removeAttribute("src");
+        document.body.style.overflow = "";
+      };
+
+      triggers.forEach((trigger) => {
+        trigger.addEventListener("click", () => {
+          lightboxImg.src = trigger.dataset.lightboxSrc;
+          lightboxImg.alt = trigger.dataset.lightboxAlt || "";
+          lightbox.hidden = false;
+          document.body.style.overflow = "hidden";
+        });
+      });
+
+      closeButton?.addEventListener("click", close);
+      lightbox.addEventListener("click", (event) => {
+        if (event.target === lightbox) close();
+      });
+      window.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && !lightbox.hidden) close();
+      });
     })();
   </script>
 </Layout>
