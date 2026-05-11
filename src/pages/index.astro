@@ -156,6 +156,14 @@ const sectionTabs = [
               )}
             </div>
             <h3>{project.title}</h3>
+            {project.image ? (
+              <img
+                class="project-image"
+                src={asset(project.image)}
+                alt={project.imageAlt ?? `${project.title} 项目框架图`}
+                loading="lazy"
+              />
+            ) : null}
             <div class="rich-text">
               <project.Content />
             </div>

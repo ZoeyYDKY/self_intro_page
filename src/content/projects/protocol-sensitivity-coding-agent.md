@@ -5,6 +5,8 @@ tags:
   - Coding Agent
   - 评测协议
   - Verifier-driven RL
+image: "overview.png"
+imageAlt: "Protocol-Sensitive Measurement Pipeline for Coding-Agent Evaluation"
 ---
 
 **角色：** 技术负责人

@@ -5,6 +5,8 @@ tags:
   - 语音合成
   - 多模态
   - PyTorch
+image: "framework_patched.png"
+imageAlt: "Lip2Speech 自回归语音合成项目框架图"
 ---
 
 **角色：** 技术负责人
